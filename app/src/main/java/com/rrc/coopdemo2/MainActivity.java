@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        final String[] dataset = initDataset();
+        final Comment[] dataset = initDataset();
 
         RecyclerView rcl1 = findViewById(R.id.rclView);
         RecyclerView.LayoutManager linearLayoutManager = new LinearLayoutManager(this);
@@ -27,10 +27,10 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private String[] initDataset() {
-        String[] dataset = new String[DATA_COUNT];
+    private Comment[] initDataset() {
+        Comment[] dataset = new Comment[DATA_COUNT];
         for (int i=0; i!= DATA_COUNT; ++i) {
-            dataset[i] = "This is element #" + i;
+            dataset[i] = new Comment("user" + i, "A comment from user" + i);
         }
 
         return dataset;

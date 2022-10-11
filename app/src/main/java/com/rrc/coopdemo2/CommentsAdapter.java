@@ -12,9 +12,9 @@ import androidx.recyclerview.widget.RecyclerView;
 public class CommentsAdapter extends RecyclerView.Adapter<CommentsAdapter.ItemViewHolder> {
 
     private static final String TAG = "CommentsAdapter";
-    private String[] mDataset;
+    private Comment[] mDataset;
 
-    public CommentsAdapter(String[] dataset) {
+    public CommentsAdapter(Comment[] dataset) {
         mDataset = dataset;
     }
 
@@ -30,27 +30,29 @@ public class CommentsAdapter extends RecyclerView.Adapter<CommentsAdapter.ItemVi
     @Override
     public void onBindViewHolder(@NonNull ItemViewHolder holder, int position) {
         Log.d(TAG, "Bind Element " + position);
-        holder.getTextView().setText(mDataset[position]);
+        holder.updateView(mDataset[position]);
     }
 
     @Override
     public int getItemCount() {
-        Log.d(TAG, "getItemCount called");
+//        Log.d(TAG, "getItemCount called");
         return mDataset.length;
     }
 
     public static class ItemViewHolder extends RecyclerView.ViewHolder {
-        private TextView textView;
+        private TextView lblUsername;
+        private TextView lblComment;
 
         public ItemViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            textView = itemView.findViewById(R.id.textView);
-            Log.d(TAG, "ItemViewHolder initialized");
+            lblUsername = itemView.findViewById(R.id.lblUserName);
+            lblComment = itemView.findViewById(R.id.lblComment);
         }
 
-        public TextView getTextView() {
-            return textView;
+        public void updateView(Comment comment) {
+            lblUsername.setText(comment.getUserName());
+            lblComment.setText(comment.getComment());
         }
     }
 }
