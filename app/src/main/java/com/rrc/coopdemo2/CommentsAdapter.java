@@ -21,6 +21,7 @@ public class CommentsAdapter extends RecyclerView.Adapter<CommentsAdapter.ItemVi
     @NonNull
     @Override
     public ItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        Log.d(TAG, "onCreateViewHolder called");
         View v = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.rcl1_row_item, parent, false);
         return new ItemViewHolder(v);
@@ -29,12 +30,12 @@ public class CommentsAdapter extends RecyclerView.Adapter<CommentsAdapter.ItemVi
     @Override
     public void onBindViewHolder(@NonNull ItemViewHolder holder, int position) {
         Log.d(TAG, "Bind Element " + position);
-
         holder.getTextView().setText(mDataset[position]);
     }
 
     @Override
     public int getItemCount() {
+        Log.d(TAG, "getItemCount called");
         return mDataset.length;
     }
 
@@ -45,6 +46,7 @@ public class CommentsAdapter extends RecyclerView.Adapter<CommentsAdapter.ItemVi
             super(itemView);
 
             textView = itemView.findViewById(R.id.textView);
+            Log.d(TAG, "ItemViewHolder initialized");
         }
 
         public TextView getTextView() {
