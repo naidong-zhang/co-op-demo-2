@@ -23,14 +23,14 @@ public class CommentsAdapter extends RecyclerView.Adapter<CommentsAdapter.ItemVi
     public ItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         Log.d(TAG, "onCreateViewHolder called");
         View v = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.rcl1_row_item, parent, false);
+                .inflate(R.layout.rcl_row_item, parent, false);
         return new ItemViewHolder(v);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ItemViewHolder holder, int position) {
         Log.d(TAG, "Bind Element " + position);
-        holder.updateView(mDataset[position]);
+        holder.updateView(mDataset[position], position);
     }
 
     @Override
@@ -42,17 +42,25 @@ public class CommentsAdapter extends RecyclerView.Adapter<CommentsAdapter.ItemVi
     public static class ItemViewHolder extends RecyclerView.ViewHolder {
         private TextView lblUsername;
         private TextView lblComment;
+        private View itemLayout;
 
         public ItemViewHolder(@NonNull View itemView) {
             super(itemView);
 
             lblUsername = itemView.findViewById(R.id.lblUserName);
             lblComment = itemView.findViewById(R.id.lblComment);
+            itemLayout = itemView.findViewById(R.id.itemLayout);
         }
 
-        public void updateView(Comment comment) {
+        public void updateView(Comment comment, int position) {
             lblUsername.setText(comment.getUserName());
             lblComment.setText(comment.getComment());
+            if (position % 2 == 1) {
+                itemLayout.setBackgroundResource(R.color.bg_grey2);
+            } else {
+                itemLayout.setBackgroundResource(R.color.bg_grey1);
+            }
+
         }
     }
 }
